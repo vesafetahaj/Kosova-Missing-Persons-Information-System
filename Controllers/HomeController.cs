@@ -54,10 +54,18 @@ namespace JobApplicationSystem.Controllers
         // POST: /Home/Register
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Register([Bind("Id, EmriMbiemri, DataLindjes, Vendlindja, VendiZhdukjes, DataZhdukjes")] TeDhena teDhena)
+        public IActionResult Register([Bind("Id, EmriMbiemri, DataLindjes, Vendlindja, VendiZhdukjes, DataZhdukjes, Komente")] TeDhena teDhena)
         {
             if (ModelState.IsValid)
             {
+                // Ensure DataZhdukjes is not later than DataLindjes
+                if (teDhena.DataZhdukjes != null && teDhena.DataLindjes != null && DateTime.Parse(teDhena.DataZhdukjes) > DateTime.Parse(teDhena.DataLindjes))
+                {
+                    ModelState.AddModelError("DataZhdukjes", "Data e Zhdukjes nuk mund të jetë më vonë se Data e Lindjes.");
+                    ViewData["Cities"] = _context.Qytetis.ToList();
+                    return View(teDhena);
+                }
+
                 _context.TeDhenas.Add(teDhena);
                 _context.SaveChanges();
                 return RedirectToAction(nameof(Index));
@@ -65,6 +73,7 @@ namespace JobApplicationSystem.Controllers
             ViewData["Cities"] = _context.Qytetis.ToList();
             return View(teDhena);
         }
+
 
     }
 }
