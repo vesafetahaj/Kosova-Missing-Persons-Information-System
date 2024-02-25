@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\KosovaMap2.props" />
+</Project>
