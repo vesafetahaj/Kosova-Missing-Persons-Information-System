@@ -1,0 +1,34 @@
+﻿@model List<KosovaMap2.Models.TeDhena>
+
+@{
+    ViewData["Title"] = "View Data";
+}
+
+<h3 class="mb-4">Te gjitha te dhenat e regjistruara</h3>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Emri dhe Mbiemri</th>
+            <th>Data e Lindjes</th>
+            <th>Vendlindja</th>
+            <th>Data e Zhdukjes</th>
+            <th>Vendi i Zhdukjes</th>
+            <th>Komente</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var data in Model)
+        {
+            <tr>
+                <td>@data.EmriMbiemri</td>
+                <td>@data.DataLindjes</td>
+                <td>@data.VendlindjaNavigation.QytetiEmri</td>
+                <td>@data.DataZhdukjes</td>
+                <td>@data.VendiZhdukjesNavigation.QytetiEmri</td>
+                <td>@data.Komente</td>
+            </tr>
+        }
+    </tbody>
+</table>
+    

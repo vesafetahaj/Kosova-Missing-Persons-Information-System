@@ -1,0 +1,80 @@
+﻿@model KosovaMap2.Models.TeDhena
+@using KosovaMap2.Models
+
+@{
+    ViewData["Title"] = "Register";
+}
+
+<h1 class="mb-4">Regjistrimi i të dhënave</h1>
+
+<form asp-action="Register">
+    <div class="form-group row">
+        <label asp-for="EmriMbiemri" class="col-sm-3 col-form-label">Emri dhe Mbiemri:</label>
+        <div class="col-sm-9">
+            <input asp-for="EmriMbiemri" class="form-control" placeholder="Shkruaj emrin dhe mbiemrin..." />
+            <span asp-validation-for="EmriMbiemri" class="text-danger"></span>
+        </div>
+    </div>
+    <br>
+
+    <div class="form-group row">
+        <label asp-for="DataLindjes" class="col-sm-3 col-form-label">Data e Lindjes:</label>
+        <div class="col-sm-9">
+            <input asp-for="DataLindjes" class="form-control" type="date" />
+            <span asp-validation-for="DataLindjes" class="text-danger"></span>
+        </div>
+    </div>
+    <br>
+    <div class="form-group row">
+        <label asp-for="Vendlindja" class="col-sm-3 col-form-label">Vendlindja:</label>
+        <div class="col-sm-9">
+            <select asp-for="Vendlindja" class="form-control">
+                <option value="" disabled selected>-- Zgjedh Qytetin --</option>
+                @foreach (var city in ViewData["Cities"] as List<Qyteti>)
+                {
+                    <option value="@city.QytetiId">@city.QytetiEmri</option>
+                }
+            </select>
+            <span asp-validation-for="Vendlindja" class="text-danger"></span>
+        </div>
+    </div>
+    <br>
+    <div class="form-group row">
+        <label asp-for="DataZhdukjes" class="col-sm-3 col-form-label">Data e Zhdukjes:</label>
+        <div class="col-sm-9">
+            <input asp-for="DataZhdukjes" class="form-control" type="date" />
+            <span asp-validation-for="DataZhdukjes" class="text-danger"></span>
+        </div>
+    </div>
+    <br>
+
+
+
+    <div class="form-group row">
+        <label asp-for="VendiZhdukjes" class="col-sm-3 col-form-label">Vendi i zhdukjes:</label>
+        <div class="col-sm-9">
+            <select asp-for="VendiZhdukjes" class="form-control">
+                <option value="" disabled selected>-- Zgjedh Qytetin --</option>
+                @foreach (var city in ViewData["Cities"] as List<Qyteti>)
+                {
+                    <option value="@city.QytetiId">@city.QytetiEmri</option>
+                }
+            </select>
+            <span asp-validation-for="VendiZhdukjes" class="text-danger"></span>
+        </div>
+    </div>
+    <br>
+    <div class="form-group row">
+        <label asp-for="Komente" class="col-sm-3 col-form-label">Komente:</label>
+        <div class="col-sm-9">
+            <textarea asp-for="Komente" class="form-control" placeholder="Shkruani komentet tuaja këtu..."></textarea>
+            <span asp-validation-for="Komente" class="text-danger"></span>
+        </div>
+    </div>
+    <br>
+    <div class="form-group row">
+        <div class="col-sm-9 offset-sm-3">
+            <button type="submit" class="btn btn-primary">Ruaj</button>
+        </div>
+    </div>
+</form>

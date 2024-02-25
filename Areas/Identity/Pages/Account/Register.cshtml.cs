@@ -16,7 +16,9 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.WebUtilities;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
 namespace KosovaMap2.Areas.Identity.Pages.Account
@@ -29,13 +31,14 @@ namespace KosovaMap2.Areas.Identity.Pages.Account
         private readonly IUserEmailStore<IdentityUser> _emailStore;
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
-
+        private readonly RoleManager<IdentityRole> _roleManager;
         public RegisterModel(
             UserManager<IdentityUser> userManager,
             IUserStore<IdentityUser> userStore,
             SignInManager<IdentityUser> signInManager,
             ILogger<RegisterModel> logger,
-            IEmailSender emailSender)
+            IEmailSender emailSender,
+            RoleManager<IdentityRole> roleManager)
         {
             _userManager = userManager;
             _userStore = userStore;
@@ -43,6 +46,7 @@ namespace KosovaMap2.Areas.Identity.Pages.Account
             _signInManager = signInManager;
             _logger = logger;
             _emailSender = emailSender;
+            _roleManager = roleManager;
         }
 
         /// <summary>
@@ -97,6 +101,11 @@ namespace KosovaMap2.Areas.Identity.Pages.Account
             [Display(Name = "Confirm password")]
             [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
             public string ConfirmPassword { get; set; }
+
+            [Required]
+            [Display(Name = "Role")]
+            public string SelectedRole { get; set; }
+
         }
 
 
@@ -104,6 +113,9 @@ namespace KosovaMap2.Areas.Identity.Pages.Account
         {
             ReturnUrl = returnUrl;
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
+
+            var roles = await _roleManager.Roles.ToListAsync();
+            ViewData["Roles"] = new SelectList(roles, nameof(IdentityRole.Name), nameof(IdentityRole.Name));
         }
 
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
@@ -120,6 +132,9 @@ namespace KosovaMap2.Areas.Identity.Pages.Account
 
                 if (result.Succeeded)
                 {
+                    // Assign the selected role to the user
+                    await _userManager.AddToRoleAsync(user, Input.SelectedRole);
+
                     _logger.LogInformation("User created a new account with password.");
 
                     var userId = await _userManager.GetUserIdAsync(user);
@@ -149,7 +164,8 @@ namespace KosovaMap2.Areas.Identity.Pages.Account
                     ModelState.AddModelError(string.Empty, error.Description);
                 }
             }
-
+            var roles = await _roleManager.Roles.ToListAsync();
+            ViewData["Roles"] = new SelectList(roles, nameof(IdentityRole.Name), nameof(IdentityRole.Name));
             // If we got this far, something failed, redisplay form
             return Page();
         }
