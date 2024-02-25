@@ -1,0 +1,49 @@
+﻿@model KosovaMap2.Models.TeDhena
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1 class="mb-4">Delete TeDhena</h1>
+
+<form asp-action="Delete" method="post">
+    <div class="form-group">
+        <input type="hidden" asp-for="Id" />
+        <p>Are you sure you want to delete this record?</p>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="EmriMbiemri" class="control-label">Emri dhe Mbiemri:</label>
+        <p>@Model.EmriMbiemri</p>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="DataLindjes" class="control-label">Data e Lindjes:</label>
+        <p>@Model.DataLindjes</p>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Vendlindja" class="control-label">Vendlindja:</label>
+        <p>@Model.VendlindjaNavigation.QytetiEmri</p>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="DataZhdukjes" class="control-label">Data e Zhdukjes:</label>
+        <p>@Model.DataZhdukjes</p>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="VendiZhdukjes" class="control-label">Vendi i Zhdukjes:</label>
+        <p>@Model.VendiZhdukjesNavigation.QytetiEmri</p>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Komente" class="control-label">Komente:</label>
+        <p>@Model.Komente</p>
+    </div>
+
+    <div class="form-group">
+        <button type="submit" class="btn btn-danger">Delete</button>
+        <a asp-action="Index" class="btn btn-default">Cancel</a>
+    </div>
+</form>
