@@ -41,13 +41,29 @@ namespace JobApplicationSystem.Controllers
             ViewData["Cities"] = cities;
             return View();
         }
-        public IActionResult Data()
+        public IActionResult Data(string city)
         {
-            var teDhenaList = _context.TeDhenas
-                                    .Include(t => t.VendlindjaNavigation)
-                                    .Include(t => t.VendiZhdukjesNavigation)
-                                    .ToList();
-            return View(teDhenaList);
+            // Filter data based on the city parameter
+            List<TeDhena> filteredData;
+
+            if (!string.IsNullOrEmpty(city))
+            {
+                filteredData = _context.TeDhenas
+                                        .Include(t => t.VendlindjaNavigation)
+                                        .Include(t => t.VendiZhdukjesNavigation)
+                                        .Where(d => d.VendiZhdukjesNavigation.QytetiEmri == city)
+                                        .ToList();
+            }
+            else
+            {
+                // If no city is specified, return all data
+                filteredData = _context.TeDhenas
+                                        .Include(t => t.VendlindjaNavigation)
+                                        .Include(t => t.VendiZhdukjesNavigation)
+                                        .ToList();
+            }
+
+            return View(filteredData);
         }
 
 
@@ -124,7 +140,7 @@ namespace JobApplicationSystem.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Data));
+                return RedirectToAction(nameof(Index));
             }
             ViewData["Cities"] = _context.Qytetis.ToList();
             return View(teDhena);

@@ -2,37 +2,77 @@
 
 @{
     ViewData["Title"] = "View Data";
+    Layout = null;
 }
 
-<h3 class="mb-4">Te gjitha te dhenat e regjistruara</h3>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Te zhdukurit - KosovaMap</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/KosovaMap.styles.css" asp-append-version="true" />
+    <link rel="icon" href="~/images/location.png" type="image/x-icon">
+</head>
+<style>
+    body {
+        margin: 60px;
+        background-image: url('@Url.Content("~/images/background.jpg")');
+        background-position: center;
+        color: white;
+    }
 
-<table class="table table-bordered">
-    <thead>
-        <tr>
-            <th>Emri dhe Mbiemri</th>
-            <th>Data e Lindjes</th>
-            <th>Vendlindja</th>
-            <th>Data e Zhdukjes</th>
-            <th>Vendi i Zhdukjes</th>
-            <th>Komente</th>
-            <th>Actions</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var data in Model)
-        {
+   table th,td{
+       color: white;
+   }
+    .back-to-index {
+        position: absolute;
+        top: 60px;
+        right: 60px;
+        z-index: 1000;
+    }
+</style>
+<h3 class="mb-4">Te dhenat e regjistruara</h3>
+<a href="https://localhost:7248/" class="btn btn-secondary back-to-index">X</a>
+<div class="content-container">
+    <table class="table table-bordered">
+        <thead>
             <tr>
-                <td>@data.EmriMbiemri</td>
-                <td>@data.DataLindjes</td>
-                <td>@data.VendlindjaNavigation.QytetiEmri</td>
-                <td>@data.DataZhdukjes</td>
-                <td>@data.VendiZhdukjesNavigation.QytetiEmri</td>
-                <td>@data.Komente</td>
-                <td>
-                    <a asp-action="Update" asp-route-id="@data.Id" class="btn btn-primary">Edit</a>
-                    <a asp-action="Delete" asp-route-id="@data.Id" class="btn btn-danger">Delete</a>
-                </td>
+                <th>Emri dhe Mbiemri</th>
+                <th>Data e Lindjes</th>
+                <th>Vendlindja</th>
+                <th>Data e Zhdukjes</th>
+                <th>Vendi i Zhdukjes</th>
+                <th>Komente</th>
+                <th>Actions</th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (var data in Model)
+            {
+                <tr>
+                    <td>@data.EmriMbiemri</td>
+                    <td>@data.DataLindjes</td>
+                    <td>@data.VendlindjaNavigation.QytetiEmri</td>
+                    <td>@data.DataZhdukjes</td>
+                    <td>@data.VendiZhdukjesNavigation.QytetiEmri</td>
+                    <td>@data.Komente</td>
+                    <td>
+                        @if (User.IsInRole("Admin")) // Check if user is in "Admin" role
+                        {
+                            <a asp-action="Update" asp-route-id="@data.Id" class="btn btn-primary">Edit</a>
+                            <a asp-action="Delete" asp-route-id="@data.Id" class="btn btn-danger">Delete</a>
+                        }
+                        else{
+
+                            <p>--</p>
+                        }
+                        </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/js/site.js" asp-append-version="true"></script>

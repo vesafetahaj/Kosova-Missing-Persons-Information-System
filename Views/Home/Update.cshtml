@@ -2,9 +2,35 @@
 
 @{
     ViewData["Title"] = "Update";
+    Layout = null;
 }
 
-<h1 class="mb-4">Update TeDhena</h1>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Te zhdukurit - KosovaMap</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/KosovaMap.styles.css" asp-append-version="true" />
+    <link rel="icon" href="~/images/location.png" type="image/x-icon">
+</head>
+<style>
+    body {
+        margin: 60px;
+        background-image: url('@Url.Content("~/images/background.jpg")');
+        background-position: center;
+        color: white;
+    }
+
+    .back-to-index {
+        position: absolute;
+        top: 60px;
+        right: 60px;
+        z-index: 1000;
+    }
+</style>
+<h3 class="mb-4">Perditeso Te Dhena</h3>
+<a href="https://localhost:7248/" class="btn btn-secondary back-to-index">X</a>
 
 <form asp-action="Update">
     <input type="hidden" asp-for="Id" />
@@ -81,3 +107,7 @@
         </div>
     </div>
 </form>
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/js/site.js" asp-append-version="true"></script>

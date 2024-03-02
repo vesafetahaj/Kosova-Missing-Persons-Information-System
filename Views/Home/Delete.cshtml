@@ -2,9 +2,24 @@
 
 @{
     ViewData["Title"] = "Delete";
+    Layout = null;
 }
 
-<h1 class="mb-4">Delete TeDhena</h1>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Te zhdukurit - KosovaMap</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/KosovaMap.styles.css" asp-append-version="true" />
+    <link rel="icon" href="~/images/location.png" type="image/x-icon">
+</head>
+<style>
+    body {
+        margin: 60px;
+    }
+</style>
+<h3 class="mb-4">Fshij Te Dhena</h3>
 
 <form asp-action="Delete" method="post">
     <div class="form-group">
@@ -47,3 +62,7 @@
         <a asp-action="Index" class="btn btn-default">Cancel</a>
     </div>
 </form>
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/js/site.js" asp-append-version="true"></script>

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "SOJ2C+ldDgk0EIQvZC3VgO6L/lOC3W6xaZ+94ObX/Ec=",
+  "Hash": "CcCpT7Cwu4RUh2rRAn1FFjoylQ7xVdsieyWXRtYbhog=",
   "Source": "KosovaMap2",
   "BasePath": "_content/KosovaMap2",
   "Mode": "Default",
@@ -1103,6 +1103,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.ico"
+    },
+    {
+      "Identity": "C:\\Users\\LENOVO\\Desktop\\KosovaMap\\KosovaMap2\\wwwroot\\images\\location.png",
+      "SourceId": "KosovaMap2",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\LENOVO\\Desktop\\KosovaMap\\KosovaMap2\\wwwroot\\",
+      "BasePath": "_content/KosovaMap2",
+      "RelativePath": "images/location.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\location.png"
     },
     {
       "Identity": "C:\\Users\\LENOVO\\Desktop\\KosovaMap\\KosovaMap2\\wwwroot\\js\\site.js",
