@@ -13,6 +13,10 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
+      "Id": "C:\\Users\\LENOVO\\Desktop\\KosovaMap\\KosovaMap2\\wwwroot\\images\\background.jpg",
+      "PackagePath": "staticwebassets\\images\\background.jpg"
+    },
+    {
       "Id": "C:\\Users\\LENOVO\\Desktop\\KosovaMap\\KosovaMap2\\wwwroot\\images\\location.png",
       "PackagePath": "staticwebassets\\images\\location.png"
     },

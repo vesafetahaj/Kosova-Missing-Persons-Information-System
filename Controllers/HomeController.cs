@@ -163,22 +163,16 @@ namespace JobApplicationSystem.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult DeleteConfirmed(int id)
         {
-            var teDhena = _context.TeDhenas
-                                   .Include(t => t.VendlindjaNavigation)
-                                   .Include(t => t.VendiZhdukjesNavigation)
-                                   .FirstOrDefault(t => t.Id == id);
+            var teDhena = _context.TeDhenas.FirstOrDefault(t => t.Id == id);
             if (teDhena == null)
             {
                 return NotFound();
             }
 
-            _context.Remove(teDhena.VendlindjaNavigation); 
-            _context.Remove(teDhena.VendiZhdukjesNavigation); 
-
             _context.TeDhenas.Remove(teDhena);
-
             _context.SaveChanges();
-            return RedirectToAction(nameof(Data));
+
+            return RedirectToAction(nameof(Index));
         }
 
     }

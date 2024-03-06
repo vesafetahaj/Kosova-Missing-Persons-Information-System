@@ -17,49 +17,52 @@
 <style>
     body {
         margin: 60px;
+        background-image: url('@Url.Content("~/images/background.jpg")');
+        background-position: center;
+        color: white;
     }
 </style>
-<h3 class="mb-4">Fshij Te Dhena</h3>
-
+<h3 class="mb-4">Fshij Të Dhëna</h3>
+<hr />
 <form asp-action="Delete" method="post">
     <div class="form-group">
         <input type="hidden" asp-for="Id" />
-        <p>Are you sure you want to delete this record?</p>
+        <p>A jeni i sigurt që dëshironi të fshini këto të dhëna?</p>
     </div>
 
     <div class="form-group">
-        <label asp-for="EmriMbiemri" class="control-label">Emri dhe Mbiemri:</label>
+        <b><label asp-for="EmriMbiemri" class="control-label">Emri dhe Mbiemri:</label></b>
         <p>@Model.EmriMbiemri</p>
     </div>
 
     <div class="form-group">
-        <label asp-for="DataLindjes" class="control-label">Data e Lindjes:</label>
+        <b><label asp-for="DataLindjes" class="control-label">Data e Lindjes:</label></b>
         <p>@Model.DataLindjes</p>
     </div>
 
     <div class="form-group">
-        <label asp-for="Vendlindja" class="control-label">Vendlindja:</label>
+        <b><label asp-for="Vendlindja" class="control-label">Vendlindja:</label></b>
         <p>@Model.VendlindjaNavigation.QytetiEmri</p>
     </div>
 
     <div class="form-group">
-        <label asp-for="DataZhdukjes" class="control-label">Data e Zhdukjes:</label>
+        <b><label asp-for="DataZhdukjes" class="control-label">Data e Zhdukjes:</label></b>
         <p>@Model.DataZhdukjes</p>
     </div>
 
     <div class="form-group">
-        <label asp-for="VendiZhdukjes" class="control-label">Vendi i Zhdukjes:</label>
+        <b><label asp-for="VendiZhdukjes" class="control-label">Vendi i Zhdukjes:</label></b>
         <p>@Model.VendiZhdukjesNavigation.QytetiEmri</p>
     </div>
 
     <div class="form-group">
-        <label asp-for="Komente" class="control-label">Komente:</label>
+        <b><label asp-for="Komente" class="control-label">Komente:</label></b>
         <p>@Model.Komente</p>
     </div>
 
     <div class="form-group">
         <button type="submit" class="btn btn-danger">Delete</button>
-        <a asp-action="Index" class="btn btn-default">Cancel</a>
+        <a asp-action="Index" class="btn btn-secondary">Cancel</a>
     </div>
 </form>
 
